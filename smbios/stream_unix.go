@@ -12,7 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//+build dragonfly freebsd netbsd openbsd solaris
+//go:build dragonfly || freebsd || netbsd || openbsd
+// +build dragonfly freebsd netbsd openbsd
+
+// Solaris intentionally omitted because it provides /dev/smbios.
 
 // Linux intentionally omitted because it has an alternative method that
 // is used before attempting /dev/mem access.  See stream_linux.go.
