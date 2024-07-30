@@ -20,7 +20,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"syscall"
 	"unsafe"
 )
@@ -70,7 +69,7 @@ func nativeEndian() binary.ByteOrder {
 //
 //	From windows.h:
 //
-// 	struct RawSMBIOSData {
+//	struct RawSMBIOSData {
 //		BYTE 	Used20CallingMethod;
 //		BYTE	SMBIOSMajorVersion;
 //		BYTE 	SMBIOSMinorVersion;
@@ -103,7 +102,7 @@ func windowsStream(buf []byte) (io.ReadCloser, EntryPoint, error) {
 
 	tableBuff := buf[rawSMBIOSDataHeaderSize : rawSMBIOSDataHeaderSize+tableSize]
 
-	return ioutil.NopCloser(bytes.NewReader(tableBuff)), entryPoint, nil
+	return io.NopCloser(bytes.NewReader(tableBuff)), entryPoint, nil
 }
 
 func stream() (io.ReadCloser, EntryPoint, error) {
